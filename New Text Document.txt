@@ -1,0 +1,367 @@
+SELECT 		ur.user_relational_id, 
+		ub.first_name,ub.last_name,
+		ub.gender , 
+		doc.dr_Institution,
+		doc.bachelors_degree,
+		doc.postgraduate_degree1,
+		doc.postgraduate_degree2,
+		doc.foreign_degree1,
+	        doc.foreign_degree2,
+        	fac.area,
+	        fac.town,
+        	fac.city,
+	        fac.latitude,
+        	fac.longitude,
+	        p.flag
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+
+
+INNER join patient_doctor p on p.patient_id ='PK-PVT-21200006'
+
+
+
+
+
+
+
+SELECT 	DISTINCT	ur.user_relational_id, 
+		ub.first_name,ub.last_name,
+		ub.gender , 
+		doc.dr_Institution,
+		doc.bachelors_degree,
+		doc.postgraduate_degree1,
+		doc.postgraduate_degree2,
+		doc.foreign_degree1,
+	        doc.foreign_degree2,
+        	fac.area,
+	        fac.town,
+        	fac.city,
+	        fac.latitude,
+        	fac.longitude,
+	        pdd.flag
+FROM 
+
+user_basicinfo ub 
+
+inner join  user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+inner join patient_doctor pdd ON pdd.doctor_id=doc.doctor_id
+inner join doctor_hospital doc_hos ON doc_hos.patient_doctor_id = pdd.patient_doctor_id 
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id;
+
+
+
+
+
+SELECT 		ur.user_relational_id, 
+		ub.first_name,ub.last_name,
+		ub.gender , 
+		doc.dr_Institution,
+		doc.bachelors_degree,
+		doc.postgraduate_degree1,
+		doc.postgraduate_degree2,
+		doc.foreign_degree1,
+	        doc.foreign_degree2,
+        	fac.area,
+	        fac.town,
+        	fac.city,
+	        fac.latitude,
+        	fac.longitude
+	        
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+where ur.user_relational_id='PK-PVT-21100139';
+
+
+
+SELECT  ur.user_relational_id, 
+		ub.first_name,
+        ub.last_name,
+		ub.gender , 
+        doc.doctor_id,
+        hos.hospital_id,
+        fac.facility_basicInfo_id,
+		fac.name,
+		doc.bachelors_degree,
+		doc.postgraduate_degree1,
+		doc.postgraduate_degree2,
+		doc.foreign_degree1,
+	        doc.foreign_degree2,
+        	fac.area,
+	        fac.town,
+        	fac.city,
+	        fac.latitude,
+        	fac.longitude
+	        
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+where ub.first_name='Kazi' AND ub.last_name='Adil'
+
+
+
+SELECT  ur.user_relational_id, 
+		ub.first_name,
+        ub.last_name,
+        doc.image_url,
+		ub.gender , 
+        doc.doctor_id,
+		doc.bachelors_degree,
+		doc.postgraduate_degree1,
+		doc.postgraduate_degree2,
+		doc.foreign_degree1,
+	        doc.foreign_degree2
+            
+        	
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+where ub.first_name='Kazi' AND ub.last_name='Adil'
+
+
+
+
+
+
+
+=INDEX($A$2:$A$10,RANDBETWEEN(1,COUNTA($A$2:$A$10)),1)      MySQLInstanceConfig.exe
+E5XQWKF-XYE3-YRCK-3PPC24K typing pro keys
+
+
+
+
+
+
+
+
+DELETE a.*, b.* 
+FROM facility_basicinfo a 
+INNER JOIN hospitals b 
+ON b.facility_basicInfo_id = a.facility_basicInfo_id 
+WHERE a.facility_basicInfo_id = 'PK-PVT-21500001'
+
+
+DELETE a.*, b.* 
+FROM facility_basicinfo a 
+INNER JOIN hospitals b 
+ON b.facility_basicInfo_id = a.facility_basicInfo_id 
+WHERE a.facility_basicInfo_id = 'PK-PVT-21500006';
+
+
+alter table hospitals add FOREIGN KEY(facility_basicInfo_id) REFERENCES facility_basicinfo(facility_basicInfo_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+DELETE a.*, b.*,dh.*,dt.* 
+FROM facility_basicinfo a 
+INNER JOIN hospitals b 
+ON b.facility_basicInfo_id = a.facility_basicInfo_id 
+INNER JOIN doctor_hospital dh ON dh.hospital_id=b.hospital_id
+INNER JOIN doctor_timing dt ON dt.doctor_hospital_id=dh.doc_hospital_id
+WHERE a.facility_basicInfo_id = 'PK-PVT-21500011';
+
+
+DELETE a.*, b.*,dh.*,dt.* 
+FROM facility_basicinfo a 
+INNER JOIN hospitals b 
+ON b.facility_basicInfo_id = a.facility_basicInfo_id 
+INNER JOIN doctor_hospital dh ON dh.hospital_id=b.hospital_id
+INNER JOIN doctor_timing dt ON dt.doctor_hospital_id=dh.doc_hospital_id
+WHERE a.facility_basicInfo_id = 'PK-PVT-21500009';
+
+DELETE a.*, b.*,dh.*,dt.* 
+FROM user_basicinfo a 
+INNER JOIN user_relationaltable b 
+ON b.user_basicinfo_id = a.user_basicinfo_id 
+INNER JOIN doctors dh ON dh.user_relational_id=b.user_relational_id
+INNER JOIN doctor_hospital dt ON dt.doctor_id=dh.doctor_id
+WHERE a.user_basicinfo_id= 'PK-PVT-21001135';
+
+
+SELECT  doc_timing.doctor_hospital_id, 
+		ub.first_name,
+        ub.last_name,
+        doc_timing.start_time,
+        doc_timing.end_time,
+        doc_timing.day_of_week
+        
+            
+        	
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join doctor_timing doc_timing ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+
+where ub.first_name='Kazi' AND ub.last_name='Adil'
+
+
+update doctor_timing doc_timing
+INNER JOIN doctor_hospital doc_hos ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+INNER JOIN user_basicinfo ub 
+SET doc_timing.start_time=1
+where doc_timing.doctor_timing_id='PK-PVT-22000002';
+
+
+update doctor_timing doc_timing
+INNER JOIN doctor_hospital doc_hos ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+INNER JOIN user_basicinfo ub ON
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join doctor_timing doc_timing ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+INNER JOIN user_basicinfo ub
+
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id 
+SET doc_timing.start_time=1
+where doc_timing.doctor_timing_id='PK-PVT-22000002';
+
+update doctor_timing doc_timing
+INNER JOIN doctor_hospital doc_hos ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join doctors doc on doc.doctor_id = doc_hos.doctor_id
+inner join user_relationaltable ur on ur.user_relational_id = doc.user_relational_id
+INNER JOIN user_basicinfo ub ON ub.user_basicinfo_id=ur.user_basicinfo_id 
+SET doc_timing.start_time=1
+where doc_timing.doctor_timing_id='PK-PVT-22000002';
+
+
+update doctor_timing doc_timing
+INNER JOIN doctor_hospital doc_hos ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join doctors doc on doc.doctor_id = doc_hos.doctor_id
+inner join user_relationaltable ur on ur.user_relational_id = doc.user_relational_id
+INNER JOIN user_basicinfo ub ON ub.user_basicinfo_id=ur.user_basicinfo_id 
+INNER JOIN hospitals h ON h.hospital_id=doc_hos.hospital_id
+INNER JOIN facility_basicinfo fb ON fb.facility_basicInfo_id=h.facility_basicInfo_id
+SET doc_timing.start_time=2
+where ur.user_relational_id='PK-PVT-22000002';
+
+update doctor_timing doc_timing
+INNER JOIN doctor_hospital doc_hos ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join doctors doc on doc.doctor_id = doc_hos.doctor_id
+inner join user_relationaltable ur on ur.user_relational_id = doc.user_relational_id
+INNER JOIN user_basicinfo ub ON ub.user_basicinfo_id=ur.user_basicinfo_id 
+INNER JOIN hospitals h ON h.hospital_id=doc_hos.hospital_id
+INNER JOIN facility_basicinfo fb ON fb.facility_basicInfo_id=h.facility_basicInfo_id
+SET doc_timing.start_time=2
+where doc.doctor_id='PK-PVT-21300002';
+
+SELECT  doc_timing.doctor_hospital_id, 
+		ub.first_name,
+        ub.last_name,
+        doc_timing.start_time,
+        doc_timing.end_time,
+        doc_timing.day_of_week
+        
+            
+        	
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join doctor_timing doc_timing ON doc_hos.doc_hospital_id=doc_timing.doctor_hospital_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+where doc.doctor_id='PK-PVT=21300002';
+
+DELETE ub.*, ur.*,d.*,dh.*,dt.* 
+FROM user_basicinfo ub 
+INNER JOIN user_relationaltable ur 
+ON ur.user_basicinfo_id = ub.user_basicinfo_id 
+INNER JOIN doctors d ON d.user_relational_id=ur.user_relational_id
+INNER JOIN doctor_hospital dh ON dh.doctor_id=d.doctor_id
+INNER JOIN doctor_timing dt ON dt.doctor_hospital_id=dh.doc_hospital_id
+WHERE dt.doctor_timing_id= 'PK-PVT-22000002';
+DELETE ub.*, ur.*,d.*,dh.*,dt.*,h.*,fb.* 
+FROM user_basicinfo ub 
+INNER JOIN user_relationaltable ur 
+ON ur.user_basicinfo_id = ub.user_basicinfo_id 
+INNER JOIN doctors d ON d.user_relational_id=ur.user_relational_id
+INNER JOIN doctor_hospital dh ON dh.doctor_id=d.doctor_id
+INNER JOIN doctor_timing dt ON dt.doctor_hospital_id=dh.doc_hospital_id
+INNER JOIN hospitals h ON h.hospital_id=dh.hospital_id
+INNER JOIN facility_basicinfo fb ON fb.facility_basicInfo_id=h.facility_basicInfo_id
+WHERE dt.doctor_timing_id= 'PK-PVT-22000010';
+DELETE dt.* 
+FROM user_basicinfo ub 
+INNER JOIN user_relationaltable ur 
+ON ur.user_basicinfo_id = ub.user_basicinfo_id 
+INNER JOIN doctors d ON d.user_relational_id=ur.user_relational_id
+INNER JOIN doctor_hospital dh ON dh.doctor_id=d.doctor_id
+INNER JOIN doctor_timing dt ON dt.doctor_hospital_id=dh.doc_hospital_id
+INNER JOIN hospitals h ON h.hospital_id=dh.hospital_id
+INNER JOIN facility_basicinfo fb ON fb.facility_basicInfo_id=h.facility_basicInfo_id
+WHERE dt.doctor_timing_id= 'PK-PVT-22000017';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

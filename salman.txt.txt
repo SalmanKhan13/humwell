@@ -1,0 +1,39 @@
+THIS IS MY FILE for Humwell dashboard.
+Upload the folder      path is var/www/html/humwell-sal/humwell 
+1) Go to add_dr_info file on line 80 add last id to user_basicinfo_id and add/increment the user_relational_id in the user_relational_table.Same the case on line 84 add user_relational_id to user_relational_id into doctors table and add/increment doctor_id. 
+2) Add new query in add_dr_info file on line 85 add information from city,address,lat,lon, remove practice_start_date and neighbourhod input fields.for instance joins look like as
+SELECT  ur.user_relational_id, 
+		ub.first_name,
+        ub.last_name,
+		ub.gender , 
+        doc.doctor_id,
+        hos.hospital_id,
+        fac.facility_basicInfo_id,
+		fac.name,
+		doc.bachelors_degree,
+		doc.postgraduate_degree1,
+		doc.postgraduate_degree2,
+		doc.foreign_degree1,
+	        doc.foreign_degree2,
+        	fac.area,
+	        fac.town,
+        	fac.city,
+	        fac.latitude,
+        	fac.longitude
+	        
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id
+where ub.first_name='Kazi' AND ub.last_name='Adil';
+
+3) Make sure queries from line 80 to 90 can take input from html form. If input text is not written please add it.
+
+
+

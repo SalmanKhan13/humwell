@@ -1,0 +1,1 @@
+=VLOOKUP(C2,[Book1]Sheet1!$C$4:$D$124,2,0)

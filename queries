@@ -1,0 +1,55 @@
+//For Adding Facility Basic info
+
+INSERT INTO `facility_basicinfo` (`facility_basicInfo_id`, `facility_type_id`, `name`, `phone_no`, `address`, `area`, `town`, `city`, `latitude`, `longitude`, `landmark`, `image_url`, `website`, `created_by`, `created_date`, `modify_by`, `modify_date`) VALUES ('', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+
+
+//For Adding Facility Extended Info
+
+INSERT INTO `hospitals` (`hospital_id`, `facility_basicInfo_id`, `poc_id`, `phone_no2`, `category`, `parking`, `is_parent`, `is_child`, `parent_id`, `tier`, `ot`, `er`, `icu`, `charity`, `opd`, `xray`, `lab`, `incubator`, `rehab`, `nursing`, `blood_bank`, `peth_lab`, `ccu`, `cost`, `size`, `pharmacy`, `ambulance`, `dialysis`, `no_of_beds`, `chemist`, `entered_by`, `entered_date`, `modify_by`, `modify_date`) VALUES ('', NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', NULL, NULL, '0', NULL, '0', NULL, '0', NULL, NULL, NULL, NULL);
+
+
+//For Selection Facility Extended Info
+
+SELECT h.hospital_id, h.facility_basicInfo_id, h.poc_id, h.phone_no2, h.category, h.parking, h.is_parent, h.is_child, h.parent_id, h.tier, h.ot, h.er, h.icu, h.charity, h.opd, h.xray, h.lab, h.incubator, h.rehab, h.nursing, h.blood_bank, h.peth_lab, h.ccu, h.cost, h.size, h.pharmacy, h.ambulance,h.dialysis, h.no_of_beds, h.chemist, h.entered_by, h.entered_date, h.modify_by, h.modify_date from hospitals h INNER JOIN facility_basicinfo fb ON h.facility_basicInfo_id=fb.facility_basicInfo_id where fb.facility_basicInfo_id='PK-PVT-21500001'
+
+//For Selection of Doctor BasicInfo
+
+SELECT ub.user_basicinfo_id,ub.title,ub.first_name,ub.last_name,ub.family_name,ub.phone_no,ub.gender,ub.cnic,ub.email,ub.dob,ub.password,ub.verified,ub.verified_code,ub.created_by,ub.created_date,ub.modify_by,ub.modify_date FROM user_basicinfo ub INNER  JOIN user_relationaltable ur ON ub.user_basicinfo_id=ur.user_basicinfo_id where ur.usertype_id=2;
+
+
+//For Selection of Doctor Extended Info
+
+SELECT d.doctor_id,d.user_relational_id,d.image_url,d.manager_no,d.speciality1,d.speciality2,d.cost,d.pmdc_no,d.dr_Institution,d.bachelors_degree,d.postgraduate_degree1,d.postgraduate_degree2,d.foreign_degree1,d.foreign_degree2,d.post_graduate_diploma1,d.post_graduate_diploma2,d.post_graduate_diploma3,d.entered_by,d.entered_date,d.modify_by,d.modify_date FROM doctors d INNER JOIN user_relationaltable ur ON d.user_relational_id=ur.user_relational_id INNER JOIN user_basicinfo ub ON ub.user_basicinfo_id=ur.user_basicinfo_id
+where ur.usertype_id=2;
+
+//For Selection of Doctor Qualification
+
+SELECT d.doctor_id,d.user_relational_id,ub.first_name,ub.last_name,d.bachelors_degree,d.postgraduate_degree1,d.postgraduate_degree2,d.foreign_degree1,d.foreign_degree2,d.post_graduate_diploma1,d.post_graduate_diploma2,d.post_graduate_diploma3 FROM doctors d INNER JOIN user_relationaltable ur ON d.user_relational_id=ur.user_relational_id INNER JOIN user_basicinfo ub ON ub.user_basicinfo_id=ur.user_basicinfo_id
+where ur.usertype_id=2
+
+//For Selection of Doctor Availability
+
+SELECT  ur.user_relational_id, 
+		ub.first_name,
+        ub.last_name,
+        fac.name,
+        dt.start_time,
+        dt.end_time,
+        dt.day_of_week
+	        
+FROM 
+
+user_basicinfo ub 
+
+inner join user_relationaltable ur on ub.user_basicinfo_id = ur.user_basicinfo_id
+inner join doctors doc on doc.user_relational_id = ur.user_relational_id
+
+inner join doctor_hospital doc_hos on doc.doctor_id = doc_hos.doctor_id
+inner join doctor_timing dt ON dt.doctor_hospital_id=doc_hos.doc_hospital_id
+inner join hospitals hos on doc_hos.hospital_id = hos.hospital_id
+inner join facility_basicinfo fac on fac.facility_basicInfo_id = hos.facility_basicInfo_id;
+(ADD WHERE Clause Accordingly)
+
+
+

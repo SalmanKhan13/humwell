@@ -1,0 +1,153 @@
+DROP TABLE IF EXISTS `signup`;
+CREATE TABLE IF NOT EXISTS `signup` (
+  `employee_id` varchar(100) DEFAULT NULL,
+  `fname` varchar(100) DEFAULT NULL,
+  `mname` varchar(100) DEFAULT NULL,
+  `lname` varchar(100) DEFAULT NULL,
+  `department` varchar(100) DEFAULT NULL,
+  `phone_no` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+COMMIT;
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Online Portal</title>
+</head>
+<body>
+<?php
+$servername="localhost";
+$username="root";
+$password="";
+$dbname="online_portal";
+try{
+	$conn=mysqli_connect($servername,$username,$password,$dbname);
+	echo("connection successful");
+}catch(MySQLi_sql_Exception $ex)
+{
+	echo ("error in connection");
+}
+if(isset($_POST['submit']))
+{
+	$employee_id=$_POST['employee_id'];
+	$fname=$_POST['fname'];
+	$mname=$_POST['mname'];
+	$lname=$_POST['lname'];
+	$dept=$_POST['dept'];
+	$phone_no=$_POST['phone_no'];
+	$email=$_POST['email'];
+	$username=$_POST['username'];
+	$password=$_POST['password'];
+	$signup_query="INSERT INTO signup(`employee_id`, `fname`, `mname`, `lname`, `department`, `phone_no`, `email`, `username`, `password`) VALUES ($employee_id,$fname,$mname,$lname,$dept,$phone_no,$email,$username,$password)";
+	try{
+		$signup_result=mysqli_query($conn,$signup_query);
+		if($signup_result)
+		{
+			if(mysqli_affected_rows($conn)>0)
+			{
+				echo ("SignUp Successful");
+			}else
+			{
+				echo("error in SignUp");
+			}
+		}
+
+}catch(Exception $ex)
+{
+	echo("error".$ex->getMessage());
+}
+
+}
+ ?>
+<form action="" method="POST">
+		<table align="center">
+			
+			<tr>
+				<td>EmployeeId:<br></td>
+				<td><input type="number" name="employee_id"></td>>
+			</tr>
+			<tr>
+				<td>Name:<br></td>
+				<td ><input type="text" name="fname"
+					placeholder="Enter your fname"></td>
+					<td ><input type="text" name="mname"
+					placeholder="Enter your mname"></td>
+					<td ><input type="text" name="lname"
+					placeholder="Enter your lname"></td>
+			</tr>
+			<tr>
+				<td>Department:<br></td>
+				<td><input type="text" name="dept"></td>
+			</tr>
+			<tr>
+				<td>
+					Phone_No:<br>
+				</td>
+				<td><input type="tel" name="phone_no"></td>
+			</tr>
+			<tr>
+				<td>Email:<br></td>
+				<td><input type="text" name="email" placeholder="example@example.com"></td>
+			</tr>
+			<tr>
+				<td>Username:<br>
+				</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>
+					Password:<br></td>
+				<td><input type="Password" name="password"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" name="submit"
+					value="SignUp"></td>
+
+			</tr>
+		</table>
+		
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+mongoimport --uri "mongodb://root:<bakistan1947>@atlas-0.0.0.0/0:27017,atlas-202.141.253.3/32:27017,atls-125.209.94.234/32:27017/<salman>?ssl=true&replicaSet=myAtlasRS&authSource=admin" --collection humwell --drop --file E:\mongodb-json-files-master\datasets\restaurant.json
+
+
+mongoimport --host cluster0-shard-00-01-wv1e4.mongodb.net:27017 --username analytics --password bakistan1947 --collection contacts --db salman --file /E:/mongodb-json-files-master/datasets/restaurant.json;
+
+
+
+
+mongoimport --host cluster0-shard-00-01-wv1e4.mongodb.net:27017 --db salman --type json --file ~/Downloads/students.json --jsonArray --authenticationDatabase admin --ssl --username analytics --password bakistan1947
+
+
+
+
+
+
+
+mongoimport --host cluster0-shard-00-01-wv1e4.mongodb.net:27017, --ssl -u analytics -p 'bakistan1947' --authenticationDatabase admin  --db salman --collection contacts --drop --file E:\mongodb-json-files-master\datasets\restaurant.json
+
+C:\Program Files\MongoDB\Server\3.6\bin   mongo "mongodb+srv://cluster0-pxcxk.mongodb.net/test" --username salman
+
+ mongoimport --host cluster0-shard-00-00-pxcxk.mongodb.net:27017 --db weli --type json --file ~/Users/pro/students.json  --jsonArray  --authenticationDatabase admin  --ssl  --username salman  --password pakistan11                 
+C:\Users\pro
+
+  
+
